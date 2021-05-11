@@ -42,5 +42,13 @@ Currently only the backend is fully functional. This can be tested using the bro
 - DELETE - /delete/:id - deletes post with matching :id
 - PUT - /edit/:id - Edits post with matching :id. Pass post message, _id, and comments. Can be used to edit a post or edit its comments (Done for quick dev, split into edit/comments and edit/message later).
 
+## Backend todo
 - If I add followers, add search/followed to only load followed account posts
 - Split edit into editing for message and comments for better modularity
+
+## Frontend todo
+- Everything, not created yet
+- Create home page
+- Create account page
+- Create signup, login, logout
+- Have logic to prevent matching usernames
