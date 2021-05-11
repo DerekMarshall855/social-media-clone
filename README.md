@@ -45,6 +45,7 @@ Currently only the backend is fully functional. This can be tested using the bro
 ## Backend todo
 - If I add followers, add search/followed to only load followed account posts
 - Split edit into editing for message and comments for better modularity
+- Hash passwords before putting them in DB (Simple)
 
 ## Frontend todo
 - Everything, not created yet
