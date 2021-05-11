@@ -1,0 +1,14 @@
+{
+  "name": "backend_api",
+  "version": "1.0.0",
+  "description": "API for posting, getting, deleting and editing. Each post has UID (User), Post#, Message, and Like count",
+  "main": "index.js",
+  "author": "Derek Marshall",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.7",
+    "nodemon": "^2.0.7"
+  }
+}
