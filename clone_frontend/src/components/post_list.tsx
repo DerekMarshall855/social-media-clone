@@ -48,6 +48,8 @@ class PostList extends React.Component<SampleProps, {posts: Post[]}> {
             let final = [];
             for (let i = 0; i < this.state.posts.length; i++) {
                 // Change later to push post_block components for better organization
+                // Post block should include comment + like button
+                // Comment updates post w/ new comment, like adds +1 to like counter
                 final.push(<div className="post">
                         <p>Poster: {this.state.posts[i].username}</p>
                         <p>Post: {this.state.posts[i].message}</p>
