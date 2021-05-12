@@ -12,7 +12,7 @@ createPost = (req, res) => {
             error: 'You must provide a message to post'
         });
     }
-
+    console.log(body);
     const post = new Post(body);
 
     if (!post) {
@@ -106,7 +106,7 @@ getAllPosts = async (req, res) => {
         if (err) {
             return res.status(400).json({ success: false, error: err });
         }
-        if (!post) {
+        if (!post || post.length == 0) {
             return res
                    .status(404)
                    .json({ success: false, error:'Post not found' });

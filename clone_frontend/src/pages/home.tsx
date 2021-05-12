@@ -1,11 +1,13 @@
 import React from 'react';
+import PostList from '../components/post_list';
+import PostForm from '../components/post_form';
 
 class Home extends React.Component {
     render() {
         return (
             <div>
-                <h1>Home</h1>
-                <h2>Create More Later haha</h2>
+                <PostForm />
+                <PostList />
             </div>
         
         );
