@@ -1,0 +1,88 @@
+/* FONT IMPORTS */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+
+/* VARIABLES */
+
+:root {
+  --main-color: #769fcd;
+  --main2-color: #b9d7ea;
+  --main3-color:   #d6e6f2; 
+  --main4-color: #f7fbfc;
+  --text-color: #777;
+  --text-color-light: #ccc;
+  --border-color: #eee;
+  --cell-color: #f9f9f9;
+  --neutral-color: #fff;
+}
+
+/* GENERAL */
+
+body {
+  font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-color);
+  background: var(--neutral-color);
+}
+
+/* button{
+cursor: pointer;
+border: 0;
+border-radius: 5em;
+outline-width: thin;
+outline-color: #555555;;
+color: #fff;
+background: linear-gradient(to right,#769fcd,#88b5e9);
+padding: 10px 20px;
+margin: 25px 0px;
+font-size: 16px;
+} */
+
+/*Website Name*/
+
+/* The navbar container */
+.navbar {
+  position: relative;
+  background-color: white;
+  text-align: center;
+}
+
+.navbar li {
+  display: inline-block;
+  background-color: white;
+  font-weight: 400;
+  
+}
+
+/* Navbar links */
+.navbar a {
+display: block;
+color: black;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+/* Links - change color on hover */
+.navbar a:hover {
+background-color: #b9d7ea;
+color: black;
+} 
+
+/* Login form */
+
+/*Home page*/
+
+/*Logout form*/
+
+.Logout-container{
+  text-align: center;
+  padding: 10px 200px 100px 200px;
+}
+.Logout-container h1{
+  color: var(--main-color);
+}

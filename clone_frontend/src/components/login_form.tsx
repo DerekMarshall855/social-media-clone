@@ -127,6 +127,7 @@ const Login = () => {
                 payload: 'Login Successful'
             })
             //Nav to home page on successful login
+            //Do authentication so user sees their own profile (cookie)
         })
     } catch {
         dispatch({
