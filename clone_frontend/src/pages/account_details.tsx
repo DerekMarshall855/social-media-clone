@@ -5,8 +5,12 @@ class AccountDetails extends React.Component {
     render() {
         return (
             <div>
-                <h1>AccountDetails</h1>
-                <h2>Create More Later haha</h2>
+                <h1>Profile</h1>
+                <h3>Add:</h3>
+                <ol>
+                    <li>Username</li>
+                    <li>List of Posts</li>
+                </ol>
             </div>
         
         );

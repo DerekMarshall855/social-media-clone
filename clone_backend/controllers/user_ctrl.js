@@ -1,4 +1,5 @@
 const User = require('../models/user_model');
+const bcrypt = require('bcrypt');
 
 /*
     Add followers/follows later: 
@@ -7,7 +8,7 @@ const User = require('../models/user_model');
         - Add followed/followers list to user schema (list of usernames/unique ID for each user)
 */
 
-createUser = (req, res) => {
+createUser = async (req, res) => {
     const body = req.body;
     if (!body) {
         return res.status(400).json({
@@ -22,21 +23,33 @@ createUser = (req, res) => {
         return res.status(400).json({ success: false, error: err });
     }
 
-    user
-        .save()
-        .then(() => {
-            return res.status(201).json({
-                success: true,
-                id: user._id,
-                message: 'User Created'
-            });
-        })
-        .catch(error => {
-            return res.status(400).json({
-                error,
-                message: 'User not created'
-            });
+    let saltRounds = 10;
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+        if (err) {
+            return res.status(400).json({ success: false, error: err });
+        }
+        bcrypt.hash(user.password, salt, function (err, hash) {
+            if (err) {
+                return res.status(400).json({ success: false, error: err });
+            }
+            user.password = hash;
+            user
+                .save()
+                .then(() => {
+                    return res.status(201).json({
+                        success: true,
+                        id: user._id,
+                        message: 'User Created'
+                    });
+                })
+                .catch(error => {
+                    return res.status(400).json({
+                        error,
+                        message: 'User not created'
+                    });
+                });
         });
+    });
 }
 
 deleteUser = async (req, res) => {
@@ -71,12 +84,26 @@ authUser = async (req, res) => {
                    .status(404)
                    .json( {success: false, error: 'User not found' });
         }
-        if (user.password.localeCompare(body.password) != 0) {
-            return res
-                   .status(404)
-                   .json({ success: false, error: 'Password does not match' });
-        }
-        return res.status(200).json({ success: true, message: "User Authenticated" });  // If returned true then login, else do not login
+        // Old way (Before hash was added)
+        // if (user.password.localeCompare(body.password) != 0) {
+        //     return res
+        //            .status(404)
+        //            .json({ success: false, error: 'Password does not match' });
+        // }
+        // Compare plaintext password to hash
+        bcrypt.compare(body.password, user.password, function(err, result) {
+            if (err) {
+                return res.status(400).json({ success: false, error: err });
+            }
+            if (result == false) {
+                return res
+                    .status(404)
+                    .json({ success: false, error: 'Password does not match' });
+            } else {
+                return res.status(200).json({ success: true, message: "User Authenticated" });  // If returned true then login, else do not login
+            }
+        })
+        
     }).catch(err => console.log(err));
 }
 

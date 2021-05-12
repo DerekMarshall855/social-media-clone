@@ -2,8 +2,8 @@ import React, {ReactNode, ReactElement} from 'react';
 
 //Change these to change default, or edit on per call basis
 const defaultContainerProps = {
-    heading: <strong>Temp Footer Heading</strong>,
-    content: <p>Temp Footer Content</p>
+    heading: <h4>Dereks Clone</h4>,
+    content: <p>Created: 2021 - Author: Derek Marshall</p>
 };
 
 //Default Typings
