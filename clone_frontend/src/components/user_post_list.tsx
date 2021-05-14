@@ -38,17 +38,21 @@ class UserPostList extends React.Component<SampleProps, {posts: Post[]}> {
     componentDidMount = async () => {
         console.log(this.state);
         try {
-            await api.searchPostUser('Derek').then(res => {
-                this.setState({posts: res.data.data})
-                console.log(this.state.posts);
-            });
+            let name: string | null = localStorage.getItem('username');
+            if(name){
+                await api.searchPostUser(name).then(res => {
+                    this.setState({posts: res.data.data})
+                    console.log(this.state.posts);
+                });
+            }
         } catch {
             console.log("There are no posts in the db");
         }
     }
 
     renderPosts = () => {
-        if (this.state.posts[0].username.localeCompare("") === 1) {
+        // Somehow posts became empty on catch, use > 0 + leftside && to avoid crash
+        if (this.state.posts.length > 0 && this.state.posts[0].username.localeCompare("") === 1) {
             let final = [];
             for (let i = 0; i < this.state.posts.length; i++) {
                 // Change later to push post_block components for better organization
@@ -61,7 +65,7 @@ class UserPostList extends React.Component<SampleProps, {posts: Post[]}> {
             }
             return (<div>{final}</div>);
         } else {
-            return (<div><p>There are no posts in the DB</p></div>);
+            return (<div><p>The current user has not made any posts</p></div>);
         }
     }
 

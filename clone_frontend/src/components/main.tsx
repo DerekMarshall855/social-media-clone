@@ -15,6 +15,10 @@ import Header from './header';
 import NavBar from './navbar';
 import Footer from './footer';
 
+// Route Types
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+
 
 const Main = () => {
     return (
@@ -24,12 +28,12 @@ const Main = () => {
             <hr/>
                 <div className="page">
                     <Switch>
-                        <Route exact path="/home" component={Home} />
-                        <Route exact path="/login" component={Login} />
-                        <Route exact path="/account_details" component={AccountDetails} />
-                        <Route exact path="/signup" component={Signup} />
-                        <Route exact path="/logout" component={Logout} />
-                        <Route path="/404" component={NotFoundPage} />
+                        <Route component={Home} path="/home" />
+                        <PublicRoute component={Login} path="/login" />
+                        <PrivateRoute component={AccountDetails} path="/account_details" />
+                        <PublicRoute component={Signup} path="/signup" />
+                        <PrivateRoute component={Logout} path="/logout" />
+                        <Route component={NotFoundPage} path="/404" exact />
                         <Redirect to="/404" />
                     </Switch>
                 </div>
