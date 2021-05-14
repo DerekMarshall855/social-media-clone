@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 //Pages
 import Home from '../pages/home';
 import Login from '../pages/login';
+import Logout from '../pages/logout';
 import AccountDetails from '../pages/account_details';
 import Signup from '../pages/signup';
 import NotFoundPage from '../pages/not_found';
@@ -27,6 +28,7 @@ const Main = () => {
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/account_details" component={AccountDetails} />
                         <Route exact path="/signup" component={Signup} />
+                        <Route exact path="/logout" component={Logout} />
                         <Route path="/404" component={NotFoundPage} />
                         <Redirect to="/404" />
                     </Switch>

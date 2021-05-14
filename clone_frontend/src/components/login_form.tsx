@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import api from '../api/user_api';
+import {logIn} from '../js_functions/login';
 
 // Use these styles for now, do sass later instead
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -117,7 +118,6 @@ const Login = () => {
 
   //Change this to use DB
   const handleLogin = async () => {
-
     var obj = JSON.parse(`{"username":"${state.username}", "password":"${state.password}"}`);
 
     try {
@@ -126,8 +126,9 @@ const Login = () => {
                 type: 'loginSuccess',
                 payload: 'Login Successful'
             })
+            logIn(obj.username);
             //Nav to home page on successful login
-            //Do authentication so user sees their own profile (cookie)
+            //Do authentication so user sees their own profile (token)
         })
     } catch {
         dispatch({

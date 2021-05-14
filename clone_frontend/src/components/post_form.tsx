@@ -1,42 +1,8 @@
 import React, { useReducer, useEffect } from 'react';
 import api from '../api/post_api';
 
-// Use these styles for now, do sass later instead
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
-import TextField from '@material-ui/core/TextField';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import CardHeader from '@material-ui/core/CardHeader';
-import Button from '@material-ui/core/Button';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      width: 400,
-      margin: `${theme.spacing(0)} auto`
-    },
-    postBtn: {
-      marginTop: theme.spacing(2),
-      flexGrow: 1
-    },
-    header: {
-      textAlign: 'center',
-      background: '#212121',
-      color: '#fff'
-    },
-    card: {
-      marginTop: theme.spacing(10)
-    }
-  })
-);
-
 //state type
 type State = {
-  username: string
   message:  string
   isButtonDisabled: boolean
   helperText: string
@@ -44,15 +10,13 @@ type State = {
 };
 
 const initialState:State = {
-  username: "",
   message: "",
   isButtonDisabled: true,
   helperText: "",
   isError: false
 };
 
-type Action = { type: 'setUsername', payload: string }
-  | { type: 'setMessage', payload: string }
+type Action = { type: 'setMessage', payload: string }
   | { type: 'setIsButtonDisabled', payload: boolean }
   | { type: 'postSuccess', payload: string }
   | { type: 'postFailed', payload: string }
@@ -60,11 +24,6 @@ type Action = { type: 'setUsername', payload: string }
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'setUsername': 
-      return {
-        ...state,
-        username: action.payload
-      };
     case 'setMessage': 
       return {
         ...state,
@@ -96,11 +55,10 @@ const reducer = (state: State, action: Action): State => {
 }
 
 const Post = () => {
-  const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    if (state.username.trim() && state.message.trim()) { // Cuts trailing spaces
+    if (state.message.trim()) { // Cuts trailing spaces
      dispatch({
        type: 'setIsButtonDisabled',
        payload: false
@@ -111,11 +69,11 @@ const Post = () => {
         payload: true
       });
     }
-  }, [state.username, state.message]);
+  }, [state.message]);
 
   //Change this to use DB
   const handlePost = async () => {
-    var obj = JSON.parse(`{"username":"${state.username}",
+    var obj = JSON.parse(`{"username":"${localStorage.getItem('username')}",
                             "message":"${state.message}",
                             "comments":[
                                 {
@@ -132,7 +90,7 @@ const Post = () => {
                 type: 'postSuccess',
                 payload: 'Post Successful'
             })
-            //Refresh/update home page
+        
         })
     } catch {
         dispatch({
@@ -148,14 +106,6 @@ const Post = () => {
     }
   };
 
-  const handleUsernameChange: React.ChangeEventHandler<HTMLInputElement> =
-    (event) => {
-      dispatch({
-        type: 'setUsername',
-        payload: event.target.value
-      });
-    };
-
   const handleMessageChange: React.ChangeEventHandler<HTMLInputElement> =
     (event) => {
       dispatch({
@@ -163,51 +113,37 @@ const Post = () => {
         payload: event.target.value
       });
     }
-  return (
-    <form className={classes.container} noValidate autoComplete="off">
-      <Card className={classes.card}>
-        <CardHeader className={classes.header} title="Post Form" />
-        <CardContent>
-          <div>
-            <TextField
-              error={state.isError}
-              fullWidth
-              id="username"
-              type="text"
-              label="Username"
-              placeholder="Username"
-              margin="normal"
-              onChange={handleUsernameChange}
-              onKeyPress={handleKeyPress}
-            />
-            <TextField
-              error={state.isError}
-              fullWidth
-              id="message"
-              type="text"
-              label="Message"
-              placeholder="Message"
-              margin="normal"
-              helperText={state.helperText}
-              onChange={handleMessageChange}
-              onKeyPress={handleKeyPress}
-            />
-          </div>
-        </CardContent>
-        <CardActions>
-          <Button
-            variant="contained"
-            size="large"
-            color="secondary"
-            className={classes.postBtn}
-            onClick={handlePost}
-            disabled={state.isButtonDisabled}>
-            Post
-          </Button>
-        </CardActions>
-      </Card>
-    </form>
-  );
+  if (localStorage.getItem('username')) {
+    return (
+      <form className="postForm" noValidate autoComplete="off">
+            <div>
+              <input
+                id="message"
+                type="text"
+                placeholder="Message"
+                onChange={handleMessageChange}
+                onKeyPress={handleKeyPress}
+              />
+              <p>{state.helperText}</p>
+            </div>
+
+            <button
+              className="postButton"
+              onClick={handlePost}
+              disabled={state.isButtonDisabled}>
+              Post
+            </button>
+
+      </form>
+    );
+  } else {
+    return (
+      <div>
+        <h2>Please login to make a post</h2>
+      </div>
+    )
+  }
+
 }
 
 export default Post;
