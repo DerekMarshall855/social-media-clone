@@ -6,6 +6,8 @@ class Logout extends React.Component {
     render() {
         return (
             <div>
+                <h3>Logout</h3>
+                <p>Are you sure you would like to logout?</p>
                 <LogoutForm/>
             </div>
         

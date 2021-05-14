@@ -67,7 +67,7 @@ editPost = async (req, res) => {
 }
 
 searchPostUser = async (req, res) => {
-    await Post.findOne({ username: req.params.username }, (err, post) => {
+    await Post.find({ username: req.params.username }, (err, post) => {
         if (err) {
             return res.status(400).json({ success: false, error: err });
         }

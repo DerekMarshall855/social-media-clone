@@ -7,11 +7,11 @@
 /* VARIABLES */
 
 :root {
-  --main-color: #769fcd;
+  --main-color: gray;
   --main2-color: #b9d7ea;
   --main3-color:   #d6e6f2; 
   --main4-color: #f7fbfc;
-  --text-color: #777;
+  --text-color: black;
   --text-color-light: #ccc;
   --border-color: #eee;
   --cell-color: #f9f9f9;
@@ -26,10 +26,10 @@ body {
   font-weight: 300;
   line-height: 1.5;
   color: var(--text-color);
-  background: var(--neutral-color);
+  background: var(--main-color);
 }
 
-/* button{
+button{
 cursor: pointer;
 border: 0;
 border-radius: 5em;
@@ -40,20 +40,20 @@ background: linear-gradient(to right,#769fcd,#88b5e9);
 padding: 10px 20px;
 margin: 25px 0px;
 font-size: 16px;
-} */
+}
 
 /*Website Name*/
 
 /* The navbar container */
 .navbar {
   position: relative;
-  background-color: white;
+  background-color: lightgray;
   text-align: center;
 }
 
 .navbar li {
   display: inline-block;
-  background-color: white;
+  background-color: lightgray;
   font-weight: 400;
   
 }
@@ -85,4 +85,25 @@ color: black;
 }
 .Logout-container h1{
   color: var(--main-color);
+}
+
+/* Post Form */
+.postForm input {
+  background-color: lightgray;
+  width: 80%;
+  height: 6em;
+  margin: 8px 0;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  position: center;
+}
+
+/* Post Block */
+.postBlock {
+  background-color: darkgray;
+}
+
+/* Comment Section */
+.commentSection {
+  background-color: lightgray;
 }

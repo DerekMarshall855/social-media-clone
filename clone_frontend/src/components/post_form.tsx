@@ -116,9 +116,9 @@ const Post = () => {
   if (localStorage.getItem('username')) {
     return (
       <form className="postForm" noValidate autoComplete="off">
+          <h3>Write Posts Here</h3>
             <div>
               <input
-                id="message"
                 type="text"
                 placeholder="Message"
                 onChange={handleMessageChange}
