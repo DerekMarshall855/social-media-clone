@@ -1,6 +1,10 @@
 import React from 'react';
 import api from '../api/post_api';
 
+// Components
+import PostBlock from './post_block';
+import CommentBlock from './comment_block';
+
 type Comment = {
     name: string,
     response: string
@@ -50,19 +54,10 @@ class PostList extends React.Component<SampleProps, {posts: Post[]}> {
                 // Change later to push post_block components for better organization
                 // Post block should include comment + like button
                 // Comment updates post w/ new comment, like adds +1 to like counter
-                final.push(<div className="post">
-                        <p>Poster: {this.state.posts[i].username}</p>
-                        <p>Post: {this.state.posts[i].message}</p>
-                </div>);
-                if (this.state.posts[i].comments[0].name.localeCompare('') === 1) {
-                    for (let x = 0; x < this.state.posts[i].comments.length; x++) {
-                        final.push(<div className="comments">
-                            <p>Commentor: {this.state.posts[i].comments[x].name}</p>
-                            <p>Comment: {this.state.posts[i].comments[x].response}</p>
-                        </div>)
-                    }
+                final.push(<PostBlock username={this.state.posts[i].username} message={this.state.posts[i].message} />);
+                if (this.state.posts[i].comments[0].name.localeCompare('') === 1) { // Only render comments if they exist
+                    final.push(<CommentBlock comments={this.state.posts[i].comments} render={(comment: string)=><div>{comment}</div>}/>)
                 }
-
             }
             return (<div>{final}</div>);
         } else {
