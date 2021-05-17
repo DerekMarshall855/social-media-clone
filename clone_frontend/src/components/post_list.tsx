@@ -13,7 +13,8 @@ type Comment = {
 type Post = {
     username: string,
     message: string,
-    comments: Comment[]
+    comments: Comment[],
+    _id: string
 }
 
 type SampleProps = {
@@ -30,17 +31,16 @@ class PostList extends React.Component<SampleProps, {posts: Post[]}> {
                 "comments":[{
                     "name":"",
                     "response":""
-                }]
+                }],
+                "_id":""
             }],
         }
     }
 
     componentDidMount = async () => {
-        console.log(this.state);
         try {
             await api.getAllPosts().then(res => {
                 this.setState({posts: res.data.data})
-                console.log(this.state.posts);
             });
         } catch {
             console.log("There are no posts in the db");
@@ -50,14 +50,18 @@ class PostList extends React.Component<SampleProps, {posts: Post[]}> {
     renderPosts = () => {
         if (this.state.posts[0].username.localeCompare("") === 1) {
             let final = [];
-            for (let i = 0; i < this.state.posts.length; i++) {
+            let temp = this.state.posts.reverse();
+            for (let i = 0; i < temp.length; i++) {
                 // Change later to push post_block components for better organization
                 // Post block should include comment + like button
                 // Comment updates post w/ new comment, like adds +1 to like counter
-                final.push(<PostBlock username={this.state.posts[i].username} message={this.state.posts[i].message} />);
-                if (this.state.posts[i].comments[0].name.localeCompare('') === 1) { // Only render comments if they exist
-                    final.push(<CommentBlock comments={this.state.posts[i].comments} render={(comment: string)=><div>{comment}</div>}/>)
+                final.push(<PostBlock key={temp[i]._id} username={temp[i].username} message={temp[i].message} id={temp[i]._id}/>);
+                if(temp[i].comments[1]) {  // If > 1 comment exists
+                    temp[i].comments.shift();
+                    final.push(<CommentBlock key={i} comments={temp[i].comments} render={(comment: string)=><div>{comment}</div>}/>);
                 }
+                
+
             }
             return (<div>{final}</div>);
         } else {

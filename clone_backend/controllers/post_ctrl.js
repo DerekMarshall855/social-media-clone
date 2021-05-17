@@ -62,6 +62,7 @@ editPost = async (req, res) => {
                    .status(404)
                    .json({ success: false, error: 'Post not found' });
         }
+        console.log("Edit Successful");
         return res.status(200).json({ success: true, data: post });
     }).catch(err => console.log(err));
 }
@@ -76,6 +77,39 @@ searchPostUser = async (req, res) => {
                    .status(404)
                    .json({ success: false, error:'Post not found' });
         }
+        return res.status(200).json({ success: true, data: post });
+    }).catch(err => console.log(err));
+}
+
+//Issue, uploads twice
+editCommentsByID = async (req, res) => {
+    const update = req.body.comment;
+    console.log(update);
+    await Post.findOneAndUpdate({ _id: req.params.id }, {$push: {comments: update}}, (err, post) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err });
+        }
+        if (!post) {
+            return res
+                   .status(404)
+                   .json({ success: false, error: 'Post not found' });
+        }
+        console.log("Search & Edit Successful");
+        return res.status(200).json({ success: true, data: post });
+    }).catch(err => console.log(err));
+}
+
+searchPostID = async (req, res) => {
+    await Post.findOne({ _id: req.params.id }, (err, post) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err });
+        }
+        if (!post) {
+            return res
+                   .status(404)
+                   .json({ success: false, error:'Post not found' });
+        }
+        console.log("Search successful");
         return res.status(200).json({ success: true, data: post });
     }).catch(err => console.log(err));
 }
@@ -134,7 +168,9 @@ module.exports = {
     createPost,
     deletePost,
     editPost,
+    editCommentsByID,
     searchPostUser,
+    searchPostID,
     searchPostContent,
     getAllPosts,
     getAllComments
