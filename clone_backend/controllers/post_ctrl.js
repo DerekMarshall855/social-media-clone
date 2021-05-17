@@ -81,7 +81,6 @@ searchPostUser = async (req, res) => {
     }).catch(err => console.log(err));
 }
 
-//Issue, uploads twice
 editCommentsByID = async (req, res) => {
     const update = req.body.comment;
     console.log(update);

@@ -23,7 +23,12 @@ Currently only the backend is fully functional. This can be tested using the bro
     {
         username: {type: String, required: true},
         message: {type: String, required: true},
-        comments: {type: [String], required: true}
+        comments: {type: [Comment], required: true}
+    }
+
+    type Comment = {
+        name: string
+        response: string
     }
 
 ## API calls
@@ -40,16 +45,11 @@ Currently only the backend is fully functional. This can be tested using the bro
 - GET - /search/all - returns all posts. Should only be called once to load homepage.
 - GET - /search/comments/:id - returns all comments on a post with :id in the _id field
 - DELETE - /delete/:id - deletes post with matching :id
-- PUT - /edit/:id - Edits post with matching :id. Pass post message, _id, and comments. Can be used to edit a post or edit its comments (Done for quick dev, split into edit/comments and edit/message later).
+- PUT - /edit/:id - Edits post with matching :id. Pass post message, _id, and comments. Used to edit posts if required, no frontend connection use yet.
+- PUT - /comments/edit/:id - Adds a comment to the list of comments for the post with specified id
 
 ## Backend todo
-- If I add followers, add search/followed to only load followed account posts
-- Split edit into editing for message and comments for better modularity
-- Hash passwords before putting them in DB (Simple)
+- Add likes field for each post & comment
 
 ## Frontend todo
-- Everything, not created yet
-- Create home page
-- Create account page
-- Create signup, login, logout
-- Have logic to prevent matching usernames
+- Add like button
