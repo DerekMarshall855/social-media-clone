@@ -98,12 +98,6 @@ const Post = () => {
     }
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.keyCode === 13 || event.which === 13) {
-      state.isButtonDisabled || handlePost();
-    }
-  };
-
   const handleMessageChange: React.ChangeEventHandler<HTMLInputElement> =
     (event) => {
       dispatch({
@@ -120,7 +114,7 @@ const Post = () => {
                 type="text"
                 placeholder="Message"
                 onChange={handleMessageChange}
-                onKeyPress={handleKeyPress}
+                //onKeyPress={handleKeyPress} // Was casuing errors by uploadings posts twice
               />
               <p>{state.helperText}</p>
             </div>
