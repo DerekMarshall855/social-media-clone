@@ -50,6 +50,16 @@ deletePost = async (req, res) => {
     }).catch(err => console.log(err));
 }
 
+deleteAllPosts = async (req, res) => {
+    await Post.remove({}, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.end('success');
+        }
+    })
+}
+
 editPost = async (req, res) => {
     const update = { message: req.body.message, comments: req.body.comments };
     await Post.findOneAndUpdate({ _id: req.params.id }, update, (err, post) => {
@@ -170,6 +180,7 @@ getAllComments = async (req, res) => {
 module.exports = {
     createPost,
     deletePost,
+    deleteAllPosts,
     editPost,
     editCommentsByID,
     searchPostUser,

@@ -1,7 +1,7 @@
 import React, {ReactNode, ReactElement} from 'react';
 
 const defaultContainerProps = {
-    heading: <strong>Social Media Clone</strong>,
+    heading: <strong>Derek's Blog Website</strong>,
     children: <p></p>
 };
 

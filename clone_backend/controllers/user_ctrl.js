@@ -121,9 +121,20 @@ getUserByName = async (req, res) => {
     }).catch(err => console.log(err));
 }
 
+deleteAllUsers = async (req, res) => {
+    await User.remove({}, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.end('success');
+        }
+    })
+}
+
 module.exports = {
     createUser,
     deleteUser,
     authUser,
-    getUserByName
+    getUserByName,
+    deleteAllUsers
 }

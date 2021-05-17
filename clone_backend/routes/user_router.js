@@ -8,5 +8,6 @@ router.post('/create', UserCtrl.createUser); // Create User from JSON object (mo
 router.post('/auth', UserCtrl.authUser); // Authorize User
 router.get('/:username', UserCtrl.getUserByName); // Get User
 router.delete('/:username', UserCtrl.deleteUser); // Delete User
+router.delete('/delete/all', UserCtrl.deleteAllUsers); // Deletes all users
 
 module.exports = router;

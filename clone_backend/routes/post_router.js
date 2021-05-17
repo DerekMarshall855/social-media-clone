@@ -11,6 +11,7 @@ router.get('/search/id/:id', PostCtrl.searchPostID); // Searches post by ID, ret
 router.get('/search/all', PostCtrl.getAllPosts); // Gets all posts, used on load, eventually used only for followed (getFollowedPosts)
 router.get('/search/comments/:id', PostCtrl.getAllComments) // Gets all comments on a post with a specified ID
 router.delete('/delete/:id', PostCtrl.deletePost); // Deletes post given UID
+router.delete('/delete_all', PostCtrl.deleteAllPosts); // Deletes all posts and comments
 router.put('/comments/edit/:id', PostCtrl.editCommentsByID); // Given an ID for a post it will edit that posts comments
 router.put('/edit/:id', PostCtrl.editPost); // Edits post with id by updating message or comments. Send over message, comments, and _id
 
