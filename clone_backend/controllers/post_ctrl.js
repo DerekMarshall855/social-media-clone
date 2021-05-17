@@ -85,7 +85,7 @@ searchPostUser = async (req, res) => {
 editCommentsByID = async (req, res) => {
     const update = req.body.comment;
     console.log(update);
-    await Post.findOneAndUpdate({ _id: req.params.id }, {$push: {comments: update}}, (err, post) => {
+    await Post.findOne({ _id: req.params.id }, (err, post) => {
         if (err) {
             return res.status(400).json({ success: false, error: err });
         }
@@ -95,7 +95,17 @@ editCommentsByID = async (req, res) => {
                    .json({ success: false, error: 'Post not found' });
         }
         console.log("Search & Edit Successful");
-        return res.status(200).json({ success: true, data: post });
+
+        post.comments.push(update);
+        post.save()
+        .then(() => {
+            return res.status(200).json({
+                success: true,
+                data: post
+            });
+        }).catch(() => {
+            return res.status(400).json({ success: false, error: err });
+        })
     }).catch(err => console.log(err));
 }
 
