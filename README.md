@@ -37,6 +37,7 @@ Currently only the backend is fully functional. This can be tested using the bro
 - POST - /auth - Takes user info, ensures that password given matches password stored. Should only be called for users that are already created
 - GET - /:username - Pass username parameter and get the user info. All usernames should be unique (Ensure in frontend)
 - DELETE - /:username - Deletes user with matching name
+- DELETE - /delete/all - Deletes all users in DB
 
 ### Post API
 - POST - /create - Creates new post with given JSON, for new post pass in empty comments array
@@ -45,11 +46,14 @@ Currently only the backend is fully functional. This can be tested using the bro
 - GET - /search/all - returns all posts. Should only be called once to load homepage.
 - GET - /search/comments/:id - returns all comments on a post with :id in the _id field
 - DELETE - /delete/:id - deletes post with matching :id
+- DELETE - /delete_all - deletes all posts and comments
 - PUT - /edit/:id - Edits post with matching :id. Pass post message, _id, and comments. Used to edit posts if required, no frontend connection use yet.
 - PUT - /comments/edit/:id - Adds a comment to the list of comments for the post with specified id
 
-## Backend todo
-- Add likes field for each post & comment
+## Backend todo (Extra)
+- Add likes field for each post & comment (Extra, not originally planned)
 
 ## Frontend todo
-- Add like button
+- Add like button (Extra, not orignally planned)
+- Change to sass (.scss) instead of css
+    - Requires config files to be compatible with typescript
