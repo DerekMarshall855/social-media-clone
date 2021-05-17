@@ -48,20 +48,15 @@ class PostList extends React.Component<SampleProps, {posts: Post[]}> {
     }
 
     renderPosts = () => {
-        if (this.state.posts[0].username.localeCompare("") === 1) {
+        if (this.state.posts.length > 0 && this.state.posts[0].username.localeCompare("") === 1) {
             let final = [];
             let temp = this.state.posts.reverse();
             for (let i = 0; i < temp.length; i++) {
-                // Change later to push post_block components for better organization
-                // Post block should include comment + like button
-                // Comment updates post w/ new comment, like adds +1 to like counter
                 final.push(<PostBlock key={temp[i]._id} username={temp[i].username} message={temp[i].message} id={temp[i]._id}/>);
                 if(temp[i].comments[1]) {  // If > 1 comment exists
                     temp[i].comments.shift();
                     final.push(<CommentBlock key={i} comments={temp[i].comments} render={(comment: string)=><div>{comment}</div>}/>);
                 }
-                
-
             }
             return (<div>{final}</div>);
         } else {

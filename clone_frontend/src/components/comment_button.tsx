@@ -85,7 +85,6 @@ function CommentButton({pid, children} : CommentProps): ReactElement {
                                             "name":"${localStorage.getItem('username')}",
                                             "response":"${state.response}"}
                                         }`);
-        console.log(obj);
         try {
             await api.editCommentsByID(pid, obj).then(res => {
                 dispatch({

@@ -81,8 +81,6 @@ const Post = () => {
                                     "response":""
                                 }
                             ]}`);
-    
-    console.log(obj);
 
     try {
         await api.createPost(obj).then(res => { //Called on successful creation

@@ -12,7 +12,6 @@ createPost = (req, res) => {
             error: 'You must provide a message to post'
         });
     }
-    console.log(body);
     const post = new Post(body);
 
     if (!post) {
@@ -62,7 +61,6 @@ editPost = async (req, res) => {
                    .status(404)
                    .json({ success: false, error: 'Post not found' });
         }
-        console.log("Edit Successful");
         return res.status(200).json({ success: true, data: post });
     }).catch(err => console.log(err));
 }
@@ -83,7 +81,6 @@ searchPostUser = async (req, res) => {
 
 editCommentsByID = async (req, res) => {
     const update = req.body.comment;
-    console.log(update);
     await Post.findOne({ _id: req.params.id }, (err, post) => {
         if (err) {
             return res.status(400).json({ success: false, error: err });
@@ -93,8 +90,6 @@ editCommentsByID = async (req, res) => {
                    .status(404)
                    .json({ success: false, error: 'Post not found' });
         }
-        console.log("Search & Edit Successful");
-
         post.comments.push(update);
         post.save()
         .then(() => {
@@ -118,7 +113,6 @@ searchPostID = async (req, res) => {
                    .status(404)
                    .json({ success: false, error:'Post not found' });
         }
-        console.log("Search successful");
         return res.status(200).json({ success: true, data: post });
     }).catch(err => console.log(err));
 }

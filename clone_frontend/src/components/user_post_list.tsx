@@ -43,7 +43,6 @@ class UserPostList extends React.Component<SampleProps, {posts: Post[]}> {
             if(name){
                 await api.searchPostUser(name).then(res => {
                     this.setState({posts: res.data.data})
-                    console.log(this.state.posts);
                 });
             }
         } catch {
@@ -55,13 +54,12 @@ class UserPostList extends React.Component<SampleProps, {posts: Post[]}> {
         // Somehow posts became empty on catch, use > 0 + leftside && to avoid crash
         if (this.state.posts.length > 0 && this.state.posts[0].username.localeCompare("") === 1) {
             let final = [];
-            for (let i = 0; i < this.state.posts.length; i++) {
-                // Change later to push post_block components for better organization
-                // Post block should include comment + like button
-                // Comment updates post w/ new comment, like adds +1 to like counter
-                final.push(<PostBlock username={this.state.posts[i].username} message={this.state.posts[i].message} id={this.state.posts[i]._id} />);
-                if (this.state.posts[i].comments[0].name.localeCompare('') === 1) { // Only render comments if they exist
-                    final.push(<CommentBlock comments={this.state.posts[i].comments} render={(comment: string)=><div>{comment}</div>}/>)
+            let temp = this.state.posts.reverse();
+            for (let i = 0; i < temp.length; i++) {
+                final.push(<PostBlock key={temp[i]._id} username={temp[i].username} message={temp[i].message} id={temp[i]._id}/>);
+                if(temp[i].comments[1]) {  // If > 1 comment exists
+                    temp[i].comments.shift();
+                    final.push(<CommentBlock key={i} comments={temp[i].comments} render={(comment: string)=><div>{comment}</div>}/>);
                 }
             }
             return (<div>{final}</div>);
