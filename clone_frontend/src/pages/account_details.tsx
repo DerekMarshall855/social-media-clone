@@ -6,6 +6,7 @@ class AccountDetails extends React.Component {
         return (
             <div>
                 <h1>{localStorage.getItem('username')}</h1>
+                <h2>All Posts:</h2>
                 <UserPostList />
             </div>
         

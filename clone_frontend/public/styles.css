@@ -25,6 +25,7 @@ body {
   font-size: 1em;
   font-weight: 300;
   line-height: 1.5;
+  margin-left: 150px;
   color: var(--text-color);
   background: var(--main-color);
 }
@@ -46,16 +47,27 @@ font-size: 16px;
 
 /* The navbar container */
 .navbar {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: lightgray;
   text-align: center;
+  width: 150px;
+  height: 100%;
 }
 
 .navbar li {
-  display: inline-block;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+  text-decoration: none;
+  color: #666666;
   background-color: lightgray;
   font-weight: 400;
-  
+  font-size: 1.1em;
+  transition: background 0.3s;
 }
 
 /* Navbar links */
@@ -70,6 +82,7 @@ text-decoration: none;
 /* Links - change color on hover */
 .navbar a:hover {
 background-color: #b9d7ea;
+font-size: 1.3em;
 color: black;
 } 
 

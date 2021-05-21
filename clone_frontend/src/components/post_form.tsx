@@ -131,7 +131,7 @@ const Post = () => {
   } else {
     return (
       <div>
-        <h2>Please login to make a post</h2>
+        <h3>Please login to make a post</h3>
       </div>
     )
   }

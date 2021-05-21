@@ -138,7 +138,7 @@ function CommentButton({pid, children} : CommentProps): ReactElement {
       } else {
         return (
           <div>
-            <h2>Must be logged in to comment</h2>
+            <h3>Please login to comment</h3>
           </div>
         )
       }
