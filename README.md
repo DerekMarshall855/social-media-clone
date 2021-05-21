@@ -3,8 +3,8 @@ A basic social media website I created to further my understanding of full stack
 Roughly based off of twitter, you can create and delete accounts, as well as create, edit, comment on, and delete posts.
 
 ## Current state
-Before creating the github repo I had already completed the backend functionality, currently working on creating the frontend
-using ReactJS and Sass.
+Currently has all required functionality of orignal plans. May add more in the future. Currently looks ugly but demonstrates
+knowledge of basic css positioning, colors, dynamic sizing, and menu styling.
 
 ## How to use
 Currently only the backend is fully functional. This can be tested using the browser or PostMan.
@@ -51,9 +51,7 @@ Currently only the backend is fully functional. This can be tested using the bro
 - PUT - /comments/edit/:id - Adds a comment to the list of comments for the post with specified id
 
 ## Backend todo (Extra)
-- Add likes field for each post & comment (Extra, not originally planned)
+- Add images to db
 
 ## Frontend todo
-- Add like button (Extra, not orignally planned)
-- Change to sass (.scss) instead of css
-    - Requires config files to be compatible with typescript
+- Add images for profiles

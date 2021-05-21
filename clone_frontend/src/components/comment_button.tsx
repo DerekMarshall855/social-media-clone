@@ -115,7 +115,7 @@ function CommentButton({pid, children} : CommentProps): ReactElement {
         }
       if (localStorage.getItem('username')) {
         return (
-          <form className="postForm" noValidate autoComplete="off">
+          <form className="commentForm" noValidate autoComplete="off">
                 <div>
                   <input
                     type="text"
@@ -125,14 +125,13 @@ function CommentButton({pid, children} : CommentProps): ReactElement {
                   />
                   <p>{state.helperText}</p>
                 </div>
-    
+                
                 <button
                   className="commentButton"
                   onClick={handleComment}
                   disabled={state.isButtonDisabled}>
                   {children}
                 </button>
-    
           </form>
         );
       } else {
