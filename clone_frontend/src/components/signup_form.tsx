@@ -1,5 +1,4 @@
 import React, { useReducer, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
 import api from '../api/user_api';
 
 // Use these styles for now, do sass later instead
@@ -220,4 +219,4 @@ const Signup = () => {
   );
 }
 
-export default withRouter(Signup);
+export default Signup;

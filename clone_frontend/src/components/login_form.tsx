@@ -1,5 +1,4 @@
 import React, { useReducer, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
 import api from '../api/user_api';
 import {logIn} from '../js_functions/login';
 
@@ -206,4 +205,4 @@ const Login = () => {
   );
 }
 
-export default withRouter(Login);
+export default Login;

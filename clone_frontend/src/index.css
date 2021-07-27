@@ -1,0 +1,245 @@
+/* FONT IMPORTS */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+
+/* VARIABLES */
+
+:root {
+  --main-color: rgb(127, 209, 235);
+  --text-color: black;
+  --border-color: black;
+  --button-color: rgb(199, 199, 255);
+  --basic-background: rgba(121, 217, 255, 0.6);
+}
+
+/* GENERAL */
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1.4rem;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
+}
+
+/* Layout */
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: 5rem 1fr 5rem;
+  height: 100%;
+}
+
+header {
+  grid-area: header;
+  background-color: var(--basic-background);
+}
+
+main {
+  grid-area: main;
+  padding: 1rem;
+}
+
+footer {
+  grid-area: footer;
+  background-color: var(--basic-background);
+  color: black;
+}
+
+/* Common */
+
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
+}
+
+h2 {
+  font-size: 1.6rem;
+  padding: 1rem 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover{
+  color: var(--main-color);
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+li {
+  margin-top: 1rem;
+}
+
+input,
+select,
+textarea,
+button {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem #a4a4a4 solid;
+  font-size: 1.6rem;
+  font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+button {
+  background-color: var(--button-color);
+  cursor: pointer;
+}
+
+input:hover,
+select:hover,
+textarea:hover,
+button:hover {
+  border: 0.1rem #404040 solid;
+}
+
+/* NavBar */
+.navbar {
+  position: absolute;
+  float: right;
+  border-left: var(--border-color);
+  border-left-style: solid;
+  top: 0;
+  right: 0;
+  background-color: var(--main-color);
+  text-align: center;
+  width: 15rem;
+  height: 100%;
+}
+
+.navbar li {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+  text-decoration: none;
+  color: #666666;
+  background-color: var(--main-color);
+  font-weight: 400;
+  font-size: 1.1em;
+}
+
+/* Navbar links */
+.navbar a {
+display: block;
+color: black;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+/* Links - change color on hover */
+.navbar a:hover {
+background-color: #b9d7ea;
+font-size: 1.3em;
+color: black;
+} 
+
+/* Header */
+
+header a {
+  color: black;
+  padding: 1rem;
+}
+
+a.brand {
+  color: black;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+a.brand:hover {
+  color: red;
+}
+
+.menuButton {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 3rem;
+  color: black;
+  font-weight: bold;
+}
+
+.menuButton:hover {
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row.center{
+  justify-content: center;
+}
+
+.home {
+  display: block;
+}
+
+/* Basic Forms */
+
+.form{
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.form > div {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.form label {
+  margin: 1rem 0;
+}
+
+/* Post block */
+.postBlock {
+  border: 0.1rem #c0c0c0 solid;
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+
+.postBlock-body {
+  padding: 1rem;
+}
+
+.postBlock-body > * {
+  margin-bottom: 0.5rem;
+}

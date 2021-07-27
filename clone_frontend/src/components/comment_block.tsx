@@ -13,7 +13,7 @@ function CommentList({
         render: (comment: string) => ReactNode;
     }): ReactElement | null {
         return (
-            <div className="commentSection">
+            <div className="card">
                 <ul>
                     {comments.map((comment, index) => (
                         <li key={index}>
