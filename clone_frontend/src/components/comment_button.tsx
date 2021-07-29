@@ -100,13 +100,13 @@ function CommentButton({pid, children} : CommentProps): ReactElement {
         }
       };
     
-      const handleKeyPress = (event: React.KeyboardEvent) => {
-        if (event.keyCode === 13 || event.which === 13) {
-          state.isButtonDisabled || handleComment();
-        }
-      };
+      // const handleKeyPress = (event: React.KeyboardEvent) => {
+      //   if (event.keyCode === 13 || event.which === 13) {
+      //     state.isButtonDisabled || handleComment();
+      //   }
+      // };
     
-      const handleResponseChange: React.ChangeEventHandler<HTMLInputElement> =
+      const handleResponseChange: React.ChangeEventHandler<HTMLTextAreaElement> =
         (event) => {
           dispatch({
             type: 'setResponse',
@@ -115,23 +115,19 @@ function CommentButton({pid, children} : CommentProps): ReactElement {
         }
       if (localStorage.getItem('username')) {
         return (
-          <form className="commentForm" noValidate autoComplete="off">
+          <form className="commentForm" noValidate autoComplete="off" id="commentForm" onSubmit={handleComment}>
                 <div>
+                  <label htmlFor="messageBox">
+                    <textarea placeholder="Message" form="commentForm" value={state.response} onChange={handleResponseChange}/>
+                  </label>
                   <input
-                    type="text"
-                    placeholder="Message"
-                    onChange={handleResponseChange}
-                    onKeyPress={handleKeyPress}
+                    className="postButton"
+                    type="submit"
+                    value="comment"
+                    disabled={state.isButtonDisabled}
                   />
                   <p>{state.helperText}</p>
                 </div>
-                
-                <button
-                  className="commentButton"
-                  onClick={handleComment}
-                  disabled={state.isButtonDisabled}>
-                  {children}
-                </button>
           </form>
         );
       } else {

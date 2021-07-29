@@ -1,19 +1,33 @@
-import React, {ReactNode, ReactElement} from 'react';
+import React, {ReactElement} from 'react';
+import {Link} from 'react-router-dom';
+import NavBar from './navbar';
 
 const defaultContainerProps = {
-    heading: <strong>Derek's Blog Website</strong>,
-    children: <p></p>
+    heading: <Link className="brand" to="/home">Derek's Blog Website</Link>,
+
 };
 
 //Default Typings
-type ContainerProps = { children: ReactNode } & typeof defaultContainerProps;
-function Header({ heading, children }: ContainerProps): ReactElement | null {
-return (
-    <div>
-        <h1>{heading}</h1>
-        {children}
-    </div>
-);
+type ContainerProps = typeof defaultContainerProps;
+function Header({ heading }: ContainerProps): ReactElement | null {
+
+    // const burgerMenuHandler = () => {
+    //     let navbar = document.getElementById('navbar');
+    //     if (navbar){
+    //         navbar.style.visibility = "visible";
+    //     }
+    // }
+
+    return (
+        <header className="row">
+            <div>
+                {heading}
+            </div>
+            <div>
+                <NavBar/>
+            </div>
+        </header>
+    );
 }
 Header.defaultProps = defaultContainerProps;
 

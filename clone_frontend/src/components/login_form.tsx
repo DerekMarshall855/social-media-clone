@@ -1,5 +1,4 @@
 import React, { useReducer, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
 import api from '../api/user_api';
 import {logIn} from '../js_functions/login';
 
@@ -18,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
     container: {
       display: 'flex',
       flexWrap: 'wrap',
-      width: 400,
+      width: '20vw',
       margin: `${theme.spacing(0)} auto`
     },
     loginBtn: {
@@ -206,4 +205,4 @@ const Login = () => {
   );
 }
 
-export default withRouter(Login);
+export default Login;

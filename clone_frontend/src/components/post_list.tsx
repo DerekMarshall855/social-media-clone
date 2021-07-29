@@ -58,7 +58,7 @@ class PostList extends React.Component<SampleProps, {posts: Post[]}> {
                     final.push(<CommentBlock key={i} comments={temp[i].comments} render={(comment: string)=><div>{comment}</div>}/>);
                 }
             }
-            return (<div>{final}</div>);
+            return (<div className="card">{final}</div>);
         } else {
             return (<div><p>There are no posts in the DB</p></div>);
         }

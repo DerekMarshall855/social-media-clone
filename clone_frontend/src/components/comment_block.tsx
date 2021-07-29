@@ -13,12 +13,13 @@ function CommentList({
         render: (comment: string) => ReactNode;
     }): ReactElement | null {
         return (
-            <div className="commentSection">
+            <div className="commentBlock">
+                <h4>Comments:</h4>
                 <ul>
                     {comments.map((comment, index) => (
-                        <li key={index}>
+                        <li key={index} className="user">
                             {render(comment.name)}
-                            <ul>
+                            <ul className="comment">
                                 <li>
                                     {render(comment.response)}
                                 </li>
