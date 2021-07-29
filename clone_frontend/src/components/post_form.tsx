@@ -98,7 +98,7 @@ const Post = () => {
     }
   };
 
-  const handleMessageChange: React.ChangeEventHandler<HTMLInputElement> =
+  const handleMessageChange: React.ChangeEventHandler<HTMLTextAreaElement> =
     (event) => {
       dispatch({
         type: 'setMessage',
@@ -107,24 +107,20 @@ const Post = () => {
     }
   if (localStorage.getItem('username')) {
     return (
-      <form className="form" noValidate autoComplete="off">
+      <form className="form" noValidate autoComplete="off" id="postForm" onSubmit={handlePost}>
           <h3>Write Posts Here</h3>
             <div>
+              <label htmlFor="MessageBox">
+                <textarea placeholder="Message" form="postForm" value={state.message} onChange={handleMessageChange}/>
+              </label>
               <input
-                type="text"
-                placeholder="Message"
-                onChange={handleMessageChange}
-                //onKeyPress={handleKeyPress} // Was casuing errors by uploadings posts twice
+                className="postButton"
+                type="submit"
+                value="post"
+                disabled={state.isButtonDisabled}
               />
               <p>{state.helperText}</p>
             </div>
-
-            <button
-              className="postButton"
-              onClick={handlePost}
-              disabled={state.isButtonDisabled}>
-              Post
-            </button>
 
       </form>
     );
